@@ -30,14 +30,14 @@ int konversi(string huruf) // konversi string ke int
   return angka;
 }
 
-void loadingSalahInput(int waktu) // hitung mundur jika inputan salah
+void loading(int waktu, string pesan) // hitung mundur jika inputan salah
 {
   clear();
   int detik = waktu;
   for (int i = 0; i <= waktu; i++)
   {
-    cout << "inputan salah" << endl;
-    cout << "Kembali ke menu dalam " << detik << endl;
+    cout << pesan << endl;
+    cout << "Ke halaman berikut nya dalam " << detik << endl;
     detik--;
     sleep_for(seconds(1));
     clear();
@@ -265,6 +265,73 @@ void changeMiddle(string nama, string tier, int posisi)
     }
     cur->nama = nama;
     cur->tier = tier;
+  }
+}
+
+// FUNGSI LOGIN
+string prosesLogin(string username, string password)
+{
+  curAkun = headAkun;
+  while (curAkun != NULL)
+  {
+    if (username == curAkun->username && password == curAkun->password)
+    {
+      if (curAkun->role == "admin")
+      {
+        loading(5, "Selamat datang, " + curAkun->username);
+        return curAkun->role;
+      }
+      else
+      {
+        loading(5, "Selamat datang, " + curAkun->username);
+        return curAkun->role;
+      }
+    }
+    curAkun = curAkun->nextAkun;
+  }
+
+  loading(5, "Username atau password salah");
+  return "gagal";
+}
+
+void createFirstAccount() // membuat node awal
+{
+  headAkun = new akun();
+  headAkun->username = "admin";
+  headAkun->password = "admin";
+  headAkun->role = "admin";
+  headAkun->uid += 1;
+  headAkun->prevAkun = NULL;
+  headAkun->nextAkun = NULL;
+  tailAkun = headAkun;
+}
+
+void addLastAccount(string username, string password)
+{ // menambahkan node baru ke akhir
+  newNodeAkun = new akun();
+  newNodeAkun->username = username;
+  newNodeAkun->password = password;
+  newNodeAkun->role = "user";
+  newNodeAkun->uid += 1;
+  newNodeAkun->prevAkun = tailAkun;
+  newNodeAkun->nextAkun = NULL;
+  tailAkun->nextAkun = newNodeAkun;
+  tailAkun = newNodeAkun;
+}
+
+void membuatAkunAwal()
+{ // membuat data awal
+  if (mulaiAkun == false)
+  {
+    createFirstAccount();
+    addLastAccount("a", "a");
+    addLastAccount("b", "b");
+    mulaiAkun = true;
+    return;
+  }
+  else
+  {
+    return;
   }
 }
 

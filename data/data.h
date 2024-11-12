@@ -3,6 +3,19 @@
 #include <iostream>
 using namespace std;
 
+struct akun
+{
+  string username, password, role;
+  int uid;
+  akun *prevAkun;
+  akun *nextAkun;
+};
+akun *headAkun, *tailAkun, *curAkun, *newNodeAkun, *delAkun, *afterNodeAkun;
+// variabel akun
+int jumlahAkun;
+int jumlahCobaLogin = 0;
+bool mulaiAkun = false;
+
 struct karakter
 {
   string nama, tier;
@@ -11,8 +24,9 @@ struct karakter
   karakter *next;
 };
 
-karakter *head, *tail, *cur, *newNode, *del, *afterNode;
+string loginUsername, loginPassword;
 
+karakter *head, *tail, *cur, *newNode, *del, *afterNode;
 // variabel global
 bool mulai = false;
 char menu;

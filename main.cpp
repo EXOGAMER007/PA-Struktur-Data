@@ -85,7 +85,7 @@ void subMenuCRUD()
     return;
     break;
   default:
-    loadingSalahInput(5);
+    loading(5, "inputan salah");
     subMenuCRUD();
     break;
   }
@@ -125,7 +125,7 @@ void user()
     exit(0);
     break;
   default:
-    loadingSalahInput(5);
+    loading(5, "inputan salah");
     user();
     break;
   }
@@ -170,17 +170,46 @@ void admin()
     exit(0);
     break;
   default:
-    loadingSalahInput(5);
+    loading(5, "inputan salah");
     admin();
     break;
   }
 }
 
-int main()
+bool login()
 {
   clear();
+  cout << "Silahkan login" << endl;
+  cout << "Username : ";
+  cin >> loginUsername;
+  cout << "Password : ";
+  cin >> loginPassword;
+  string statusLogin = prosesLogin(loginUsername, loginPassword);
+  if (statusLogin == "admin")
+  {
+    admin();
+  }
+  else if (statusLogin == "user")
+  {
+    user();
+  }
+  else if (jumlahCobaLogin == 3)
+  {
+    clear();
+    loading(5, "Anda sudah terlalu banyak salah");
+    exit(0);
+  }
+  else
+  {
+    jumlahCobaLogin++;
+    login();
+  }
+  return true;
+}
+int main()
+{
   membuatDataAwal();
-  // user();
-  admin();
-  return 0;
+  membuatAkunAwal();
+  clear();
+  login();
 }
