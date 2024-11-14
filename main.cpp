@@ -119,6 +119,7 @@ void subMenuCRUD()
 
 void SubMenuSearch()
 {
+  clear();
   int metode;
   string nama;
 
@@ -137,16 +138,19 @@ void SubMenuSearch()
   switch (metode)
   {
   case 1:
+    clear();
     cout << "Masukkan nama karakter yang ingin dicari (Fibonacci Search): ";
     cin >> nama;
     cariNama(nama);
     break;
   case 2:
+    clear();
     cout << "Masukkan nama karakter yang ingin dicari (Jump Search): ";
     cin >> nama;
     cariNamaJump(nama);
     break;
   case 3:
+    clear();
     cout << "Masukkan substring nama karakter yang ingin dicari (Boyer-Moore Search): ";
     cin >> nama;
     cariNamaBoyerMoore(nama);
