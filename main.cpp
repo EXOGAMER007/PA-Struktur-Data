@@ -62,10 +62,10 @@ void subMenuCRUD()
     printDoubleLinkedList();
     cout << "Masukkan posisi yang ingin ditambahkan : ";
     cin >> posisi;
-    cout << "Masukkan nama item : ";
+    cout << "Masukkan nama karakter : ";
     cin.ignore();
     getline(cin, nama);
-    cout << "Masukkan tier item : ";
+    cout << "Masukkan tier karakter : ";
     getline(cin, tier);
     clear();
     hasil_Int = konversi(posisi);

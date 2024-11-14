@@ -32,6 +32,7 @@ int konversi(string huruf) // konversi string ke int
 
 void loading(int waktu, string pesan) // hitung mundur jika inputan salah
 {
+  waktu = 1; // debug only
   clear();
   int detik = waktu;
   for (int i = 0; i <= waktu; i++)
@@ -108,13 +109,29 @@ void printDoubleLinkedList()
 { // menampilkan semua node
   cur = head;
   int nomor = 1;
+  bool pertamaKali = true;
+  string tier;
   while (cur != NULL)
   {
-    cout << "Nama  : " << cur->nama << endl;
-    cout << "Tier  : " << cur->tier << endl;
-    cout << "ID    : " << cur->id << endl;
-    cout << "Nomor : " << nomor << endl;
-    cout << "====================" << endl;
+    if (pertamaKali || cur->tier != tier)
+    {
+      cout << "====================" << endl;
+      cout << "Tier  : " << cur->tier << endl;
+      cout << "====================" << endl;
+      cout << "Nama  : " << cur->nama << endl;
+      cout << "ID    : " << cur->id << endl;
+      cout << "Nomor : " << nomor << endl;
+      cout << endl;
+      tier = cur->tier;
+      pertamaKali = false;
+    }
+    else
+    {
+      cout << "Nama  : " << cur->nama << endl;
+      cout << "ID    : " << cur->id << endl;
+      cout << "Nomor : " << nomor << endl;
+      cout << endl;
+    }
     nomor++;
     cur = cur->next;
   }
@@ -181,8 +198,21 @@ void membuatDataAwal()
   if (mulai == false)
   {
     createDoubleLinkedList("HuTao", "S");
+    addLast("HuTao", "S");
+    addLast("HuTao", "S");
+    addLast("HuTao", "S");
+    addLast("HuTao", "S");
+    addLast("Diluc", "A");
+    addLast("Diluc", "A");
     addLast("Diluc", "A");
     addLast("Razor", "B");
+    addLast("Razor", "B");
+    addLast("Razor", "B");
+    addLast("Razor", "B");
+    addLast("Qiqi", "C");
+    addLast("Qiqi", "C");
+    addLast("Qiqi", "C");
+    addLast("Qiqi", "C");
     addLast("Qiqi", "C");
     mulai = true;
     return;
