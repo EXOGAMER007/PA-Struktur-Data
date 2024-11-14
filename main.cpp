@@ -11,12 +11,38 @@ using namespace std::this_thread;
 void user();
 void admin();
 
-void subMenuSort()
+void submenusort()
 {
-  cout << "menu sort" << endl;
-  cout << "1. Sort berdasarkan Tier" << endl;          // sort dengan urutan tier S, A, B, C, D
-  cout << "2. Sort berdasarkan Nama karakter" << endl; // sort dengan urutan nama karakter ASC/DSC
+  int pilihan;
+  cout << "===== Menu Sorting =====" << endl;
+  cout << "1. Sort by Name (QuickSort)" << endl;
+  cout << "2. Sort by Tier (MergeSort)" << endl;
+  cout << "Pilih metode sorting (1/2): ";
+  cin >> pilihan;
+
+  switch (pilihan)
+  {
+  case 1:
+    sortByName();
+    cout << "Data berhasil diurutkan berdasarkan Nama." << endl;
+    break;
+  case 2:
+    sortByTier();
+    cout << "Data berhasil diurutkan berdasarkan Tier." << endl;
+    break;
+  default:
+    cout << "Pilihan tidak valid. Silakan coba lagi." << endl;
+    break;
+  }
+  lanjut(); // Menunggu input ENTER untuk melanjutkan
 }
+
+// void subMenuSort()
+// {
+//   cout << "menu sort" << endl;
+//   cout << "1. Sort berdasarkan Tier" << endl;          // sort dengan urutan tier S, A, B, C, D
+//   cout << "2. Sort berdasarkan Nama karakter" << endl; // sort dengan urutan nama karakter ASC/DSC
+// }
 
 void subMenuCRUD()
 {
@@ -54,10 +80,10 @@ void subMenuCRUD()
     printDoubleLinkedList();
     cout << "Masukkan posisi yang ingin diganti : ";
     cin >> posisi;
-    cout << "Masukkan nama item : ";
+    cout << "Masukkan nama Karakter : ";
     cin.ignore();
     getline(cin, nama);
-    cout << "Masukkan tier item : ";
+    cout << "Masukkan tier Karakter : ";
     getline(cin, tier);
     clear();
     hasil_Int = konversi(posisi);
@@ -85,14 +111,62 @@ void subMenuCRUD()
     return;
     break;
   default:
-    loading(5, "inputan salah");
+    loading(3, "inputan salah");
     subMenuCRUD();
     break;
   }
 }
 
+void SubMenuSearch()
+{
+  int metode;
+  string nama;
+
+  cout << "----------------------------------------" << endl;
+  cout << "|             SEARCH KARAKTER          |" << endl;
+  cout << "|             Genshin Impact           |" << endl;
+  cout << "----------------------------------------" << endl;
+  cout << "Pilih metode pencarian:\n";
+  cout << "1. Fibonacci Search\n";
+  cout << "2. Jump Search\n";
+  cout << "3. Boyer-Moore Search\n";
+  cout << "4. Kembali ke menu utama\n";
+  cout << "Masukkan pilihan: ";
+  cin >> metode;
+
+  switch (metode)
+  {
+  case 1:
+    cout << "Masukkan nama karakter yang ingin dicari (Fibonacci Search): ";
+    cin >> nama;
+    cariNama(nama);
+    break;
+  case 2:
+    cout << "Masukkan nama karakter yang ingin dicari (Jump Search): ";
+    cin >> nama;
+    cariNamaJump(nama);
+    break;
+  case 3:
+    cout << "Masukkan substring nama karakter yang ingin dicari (Boyer-Moore Search): ";
+    cin >> nama;
+    cariNamaBoyerMoore(nama);
+    break;
+  case 4:
+    clear();
+    return;
+  default:
+    cout << "Pilihan tidak valid. Coba lagi.\n";
+    lanjut();
+    SubMenuSearch();
+    break;
+  }
+  lanjut();
+  SubMenuSearch();
+}
+
 void user()
 {
+  clear();
   cout << "----------------------------------------" << endl;
   cout << "|             TIER KARAKTER            |" << endl;
   cout << "|             Genshin Impact           |" << endl;
@@ -101,35 +175,43 @@ void user()
   cout << "1. Lihat tier" << endl;
   cout << "2. Lihat dan Sort karakter" << endl;
   cout << "3. Search karakter" << endl;
-  cout << "4. Exit" << endl;
+  cout << "4. kembali ke menu utama" << endl; // Opsi Registrasi
+  cout << "5. Exit" << endl;
   cin >> menu;
   switch (menu)
   {
   case '1':
-    cout << "menu tier" << endl;
+    clear();
+    printDoubleLinkedList();
+    lanjut();
     user();
     break;
   case '2':
-    subMenuSort();
+    clear();
+    submenusort();
     user();
     break;
   case '3':
     cout << "menu search" << endl;
+    clear();
+    SubMenuSearch();
     user();
     break;
   case '4':
-    cout << "exit" << endl;
+    clear();
+    menuUtama();
+    user();
     break;
   case '5':
     cout << "exit" << endl;
-    exit(0);
     break;
   default:
-    loading(5, "inputan salah");
+    loading(3, "inputan salah");
     user();
     break;
   }
 }
+
 void admin()
 {
   clear();
@@ -142,7 +224,9 @@ void admin()
   cout << "2. Lihat dan Sort karakter" << endl;
   cout << "3. Search karakter" << endl;
   cout << "4. CRUD data karakter" << endl;
-  cout << "5. Exit" << endl;
+  cout << "5. Konfirmasi Registrasi" << endl; // New option
+  cout << "6. kembali ke menu utama" << endl; // New option
+  cout << "7. Exit" << endl;
   cin >> menu;
   switch (menu)
   {
@@ -153,11 +237,13 @@ void admin()
     admin();
     break;
   case '2':
-    subMenuSort();
+    submenusort();
     admin();
     break;
   case '3':
     cout << "menu search" << endl;
+    clear();
+    SubMenuSearch();
     admin();
     break;
   case '4':
@@ -166,11 +252,18 @@ void admin()
     admin();
     break;
   case '5':
+    confirmRegistrations();
+    admin();
+    break;
+  case '6':
+    menuUtama();
+    break;
+  case '7':
     cout << "exit" << endl;
     exit(0);
     break;
   default:
-    loading(5, "inputan salah");
+    loading(3, "inputan salah");
     admin();
     break;
   }
@@ -196,7 +289,7 @@ bool login()
   else if (jumlahCobaLogin == 3)
   {
     clear();
-    loading(5, "Anda sudah terlalu banyak salah");
+    loading(3, "Anda sudah terlalu banyak salah");
     exit(0);
   }
   else
@@ -206,10 +299,47 @@ bool login()
   }
   return true;
 }
+
+// Fungsi untuk menampilkan menu registrasi atau login
+void menuUtama()
+{
+  clear();
+  cout << "----------------------------------------" << endl;
+  cout << "|             TIER KARAKTER            |" << endl;
+  cout << "|             Genshin Impact           |" << endl;
+  cout << "----------------------------------------" << endl;
+  cout << "Menu Utama:" << endl;
+  cout << "1. Login" << endl;
+  cout << "2. Registrasi" << endl;
+  cout << "3. Keluar" << endl;
+  cout << "Pilih opsi (1/2/3): ";
+  char pilihan;
+  cin >> pilihan;
+
+  switch (pilihan)
+  {
+  case '1':
+    login();
+    break;
+  case '2':
+    registerUser();
+    break;
+  case '3':
+    cout << "Terima kasih! Keluar dari program." << endl;
+    exit(0);
+    break;
+  default:
+    cout << "Pilihan tidak valid. Silakan coba lagi." << endl;
+    menuUtama();
+    break;
+  }
+}
 int main()
 {
   membuatDataAwal();
   membuatAkunAwal();
+  loading(3, "Memuat data...");
   clear();
-  login();
+  menuUtama();
+  return 0;
 }

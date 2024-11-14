@@ -12,7 +12,7 @@ struct akun
 };
 akun *headAkun, *tailAkun, *curAkun, *newNodeAkun, *delAkun, *afterNodeAkun;
 // variabel akun
-int jumlahAkun;
+int jumlahUID = 0;
 int jumlahCobaLogin = 0;
 bool mulaiAkun = false;
 
@@ -24,11 +24,15 @@ struct karakter
   karakter *next;
 };
 
-string loginUsername, loginPassword;
+int jumlahId = 0;
 
 karakter *head, *tail, *cur, *newNode, *del, *afterNode;
+
+string loginUsername, loginPassword;
+
 // variabel global
 bool mulai = false;
+int nomorId = 0;
 char menu;
 string posisi, nama, tier;
 int hasil_Int;
