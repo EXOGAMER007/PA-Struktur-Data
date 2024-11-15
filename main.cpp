@@ -61,14 +61,14 @@ void subMenuCRUD()
     cout << "menu tambah karakter" << endl;
     printDoubleLinkedList();
     cout << "Masukkan posisi yang ingin ditambahkan : ";
-    cin >> posisi;
+    cin >> posisi2;
     cout << "Masukkan nama karakter : ";
     cin.ignore();
     getline(cin, nama);
     cout << "Masukkan tier karakter : ";
     getline(cin, tier);
     clear();
-    hasil_Int = konversi(posisi);
+    hasil_Int = konversi(posisi2);
     addMiddle(nama, tier, hasil_Int);
     printDoubleLinkedList();
     lanjut();
@@ -79,14 +79,14 @@ void subMenuCRUD()
     cout << "menu Update karakter" << endl;
     printDoubleLinkedList();
     cout << "Masukkan posisi yang ingin diganti : ";
-    cin >> posisi;
+    cin >> posisi2;
     cout << "Masukkan nama Karakter : ";
     cin.ignore();
     getline(cin, nama);
     cout << "Masukkan tier Karakter : ";
     getline(cin, tier);
     clear();
-    hasil_Int = konversi(posisi);
+    hasil_Int = konversi(posisi2);
     changeMiddle(nama, tier, hasil_Int);
     printDoubleLinkedList();
     lanjut();
@@ -97,8 +97,8 @@ void subMenuCRUD()
     cout << "menu hapus karakter" << endl;
     printDoubleLinkedList();
     cout << "Masukkan posisi yang ingin dihapus : ";
-    cin >> posisi;
-    hasil_Int = konversi(posisi);
+    cin >> posisi2;
+    hasil_Int = konversi(posisi2);
     removeMiddle(hasil_Int);
     clear();
     printDoubleLinkedList();
@@ -208,6 +208,7 @@ void user()
     break;
   case '5':
     cout << "exit" << endl;
+    exit(0);
     break;
   default:
     loading(3, "inputan salah");
@@ -241,6 +242,7 @@ void admin()
     admin();
     break;
   case '2':
+    clear();
     submenusort();
     admin();
     break;
@@ -276,11 +278,17 @@ void admin()
 bool login()
 {
   clear();
-  cout << "Silahkan login" << endl;
+  cout << "Silahkan login atau ketik 1 untuk kembali" << endl;
   cout << "Username : ";
   cin >> loginUsername;
+  if (loginUsername == "1")
+  {
+    clear();
+    menuUtama();
+  }
   cout << "Password : ";
   cin >> loginPassword;
+
   string statusLogin = prosesLogin(loginUsername, loginPassword);
   if (statusLogin == "admin")
   {

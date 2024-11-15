@@ -34,7 +34,10 @@ string loginUsername, loginPassword;
 bool mulai = false;
 int nomorId = 0;
 char menu;
-string posisi, nama, tier;
+string posisi2, nama, tier;
+int posisi;
 int hasil_Int;
+
+int jumlah999;
 
 #endif // data_H

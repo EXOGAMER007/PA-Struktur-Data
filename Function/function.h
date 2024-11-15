@@ -137,6 +137,22 @@ void printDoubleLinkedList()
   }
 }
 
+// void printDoubleLinkedList()
+// { // menampilkan semua node
+//   cur = head;
+//   int nomor = 1;
+//   while (cur != NULL)
+//   {
+//     cout << "Nama  : " << cur->nama << endl;
+//     cout << "Tier  : " << cur->tier << endl;
+//     cout << "ID    : " << cur->id << endl;
+//     cout << "Nomor : " << nomor << endl;
+//     cout << "====================" << endl;
+//     nomor++;
+//     cur = cur->next;
+//   }
+// }
+
 void printDoubleLinkedListAccount()
 { // menampilkan semua node
   curAkun = headAkun;
@@ -180,10 +196,10 @@ void addMiddle(string nama, string tier, int posisi)
     // tranversing
     cur = head;
     int nomor = 1;
-    while (nomor > posisi - 1)
+    while (nomor < posisi - 1)
     {
       cur = cur->next;
-      cur++;
+      nomor++;
     }
     afterNode = cur->next;
     newNode->prev = cur;
