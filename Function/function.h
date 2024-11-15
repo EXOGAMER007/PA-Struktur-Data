@@ -197,23 +197,23 @@ void membuatDataAwal()
 { // membuat data awal
   if (mulai == false)
   {
-    createDoubleLinkedList("HuTao", "S");
-    addLast("HuTao", "S");
-    addLast("HuTao", "S");
-    addLast("HuTao", "S");
-    addLast("HuTao", "S");
-    addLast("Diluc", "A");
-    addLast("Diluc", "A");
-    addLast("Diluc", "A");
-    addLast("Razor", "B");
-    addLast("Razor", "B");
-    addLast("Razor", "B");
-    addLast("Razor", "B");
-    addLast("Qiqi", "C");
-    addLast("Qiqi", "C");
-    addLast("Qiqi", "C");
-    addLast("Qiqi", "C");
-    addLast("Qiqi", "C");
+    createDoubleLinkedList("HuTao", "A");
+    addLast("HuTao", "A");
+    addLast("HuTao", "A");
+    addLast("HuTao", "A");
+    addLast("HuTao", "A");
+    addLast("Diluc", "B");
+    addLast("Diluc", "B");
+    addLast("Diluc", "B");
+    addLast("Razor", "C");
+    addLast("Razor", "C");
+    addLast("Razor", "C");
+    addLast("Razor", "C");
+    addLast("Qiqi", "D");
+    addLast("Qiqi", "D");
+    addLast("Qiqi", "D");
+    addLast("Qiqi", "E");
+    addLast("Qiqi", "E");
     mulai = true;
     return;
   }
