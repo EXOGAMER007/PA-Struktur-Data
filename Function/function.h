@@ -329,7 +329,7 @@ string prosesLogin(string username, string password)
         loading(3, "Selamat datang, " + curAkun->username);
         return curAkun->role;
       }
-      else
+      else if (curAkun->role == "user")
       {
         loading(3, "Selamat datang, " + curAkun->username);
         return curAkun->role;
@@ -338,7 +338,7 @@ string prosesLogin(string username, string password)
     curAkun = curAkun->nextAkun;
   }
 
-  loading(3, "Username atau password salah");
+  loading(3, "Username atau password salah atau akun anda belum di konfirmasi admin.....");
   return "gagal";
 }
 
