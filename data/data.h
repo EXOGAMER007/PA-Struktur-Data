@@ -38,6 +38,4 @@ string posisi2, nama, tier;
 int posisi;
 int hasil_Int;
 
-int jumlah999;
-
 #endif // data_H
